@@ -1,0 +1,35 @@
+[
+  {
+    "name": "vermelho",
+    "conectores": [0, 3, 2, 2]
+    "position": [0,2]
+    "connectou": [0,1,0,0],
+  },
+  {
+    "name": "vermelho",
+    "conectores": [0, 0, 4, 3]
+    "position": [0,3]
+    "connectou": [0,0,0,1],
+  },
+  {
+  {
+    "name": "verde",
+    "conectores": [2, 4, 0, 0]
+    "position": [1,1]
+    "connectou": [0,0,0,0],
+  },
+  {
+  {
+    "name": "verde",
+    "conectores": [0, 2, 0, 0]
+    "position": [3,0]
+    "connectou": [0,0,0,0],
+  },
+  {
+  {
+    "name": "verde",
+    "conectores": [4, 0, 0, 4]
+    "position": [3,3]
+    "connectou": [0,0,0,0],
+  },
+]
