@@ -1,44 +1,26 @@
 [
   {
-    "name": "",
-    "conectores": [0, 0, 0, 0]
+    "name": "amarelo",
+    "conectores": [0, 0, 0, 4]
     "position": [0,0]
     "connectou": [0,0,0,0],
   },
   {
-    "name": "",
-    "conectores": [0, 0, 0, 0]
-    "position": [0,0]
+    "name": "vermelho",
+    "conectores": [0, 2, 3, 0]
+    "position": [2,0]
     "connectou": [0,0,0,0],
   },
   {
-    "name": "",
-    "conectores": [0, 0, 0, 0]
-    "position": [0,0]
+    "name": "vermelho",
+    "conectores": [0, 0, 0, 3]
+    "position": [2,2]
     "connectou": [0,0,0,0],
   },
   {
-    "name": "",
-    "conectores": [0, 0, 0, 0]
+    "name": "azul",
+    "conectores": [0, 2, 0, 3]
     "position": [0,0]
     "connectou": [0,0,0,0],
-  },
-  {
-    "name": "",
-    "conectores": [0, 0, 0, 0]
-    "position": [0,0]
-    "connectou": [0,0,0,0],
-  },
-  {
-    "name": "",
-    "conectores": [0, 0, 0, 0]
-    "position": [0,0]
-    "connectou": [0,0,0,0],
-  },
-  {
-    "name": "",
-    "conectores": [0, 0, 0, 0]
-    "position": [0,0]
-    "connectou": [0,0,0,0],
-  },
+  }
 ]
