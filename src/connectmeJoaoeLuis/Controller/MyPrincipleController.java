@@ -4,14 +4,16 @@
  */
 package connectmeJoaoeLuis.Controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import connectmeJoaoeLuis.Model.Block;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,28 +32,21 @@ public class MyPrincipleController {
     
     public void readJson() {
         
-        // readJson 
-        Map<String, Object> jsonData = new HashMap<String, Object>();
-        
+        // readJson   
+       
         try{
-            URL url = MyPrincipleController.class.getResource("../assets/json/level1.json");
-            InputStream input = url.openStream();
-            System.out.println(url);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(input));
-            System.out.println(bufferedReader);
-            String line = bufferedReader.readLine(); // read first line
-            while(line != null) {
-//                Block block = objectMapper.readValue("<json object>", Block.class);
-                
-//                System.out.println("block"+block.toString());
-                
-//                jsonData += line + "\n";
-                jsonData.get(line);
-                line = bufferedReader.readLine(); 
-                
-            }
+
             
-            bufferedReader.close();
+            final ObjectMapper objectMapper = new ObjectMapper();
+            
+            List<Block> langList = objectMapper.readValue(
+                    new File("src/connectmeJoaoeLuis/assets/json/level1.json"),
+                    new TypeReference<List<Block>>() {
+            });
+
+
+            langList.forEach(x -> System.out.println(x.toString()));
+
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -65,4 +60,5 @@ public class MyPrincipleController {
         Icon image = new ImageIcon(urlImage);
         list.get(0).setIcon(image);
     }
+
 }
