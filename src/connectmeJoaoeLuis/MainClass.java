@@ -6,6 +6,7 @@ package connectmeJoaoeLuis;
 
 import connectmeJoaoeLuis.Controller.MyPrincipleController;
 import connectmeJoaoeLuis.View.Tela;
+import java.io.File;
 import java.util.List;
 import javax.swing.JButton;
 /**
@@ -17,9 +18,9 @@ public class MainClass {
     public static void main(String[] args)  {
         // TODO code application logic here
         Tela tela = new Tela();
-//        tela.setVisible(true);
-        List<JButton> list = tela.getListaBotoes();
-        MyPrincipleController principleController = new MyPrincipleController(list);
-        principleController.readJson();
+        tela.setVisible(true);
+        File file  = tela.getFileJson();
+        
+       
     }    
 }

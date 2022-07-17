@@ -30,7 +30,8 @@ public class MyPrincipleController {
     }
     
     
-    public void readJson() {
+    public void readJson(File file) {
+        
         
         // readJson   
        
@@ -40,7 +41,8 @@ public class MyPrincipleController {
             final ObjectMapper objectMapper = new ObjectMapper();
             
             List<Block> langList = objectMapper.readValue(
-                    new File("src/connectmeJoaoeLuis/assets/json/level1.json"),
+                   //new File("src/connectmeJoaoeLuis/assets/json/level1.json"),
+                    file,
                     new TypeReference<List<Block>>() {
             });
 
