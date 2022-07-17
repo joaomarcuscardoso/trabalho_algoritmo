@@ -1,14 +1,14 @@
 [
   {
     "name": "azul",
-    "conectores": [0, 0, 3, 0],
+    "connectors": [0, 0, 3, 0],
     "position": [1,1],
-    "connectou": [0,0,0,0]
+    "done": [0,0,0,0]
   },
   {
     "name": "vermelho",
-    "conectores": [0, 0, 0, 3],
+    "connectors": [0, 0, 0, 3],
     "position": [2,1],
-    "connectou": [0,0,0,0]
+    "done": [0,0,0,0]
   }
 ]
