@@ -17,9 +17,10 @@ public class MainClass {
 
     public static void main(String[] args)  {
         // TODO code application logic here
-        Tela tela = new Tela();
-        tela.setVisible(true);
-        File file  = tela.getFileJson();
+        Tela tela = new Tela();        
+        tela.showView();
+        
+//       MyPrincipleController controller = new MyPrincipleController();
         
        
     }    

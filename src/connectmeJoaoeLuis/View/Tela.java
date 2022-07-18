@@ -4,56 +4,69 @@
  */
 package connectmeJoaoeLuis.View;
 
+import connectmeJoaoeLuis.Controller.LevelController;
 import connectmeJoaoeLuis.Controller.MyPrincipleController;
+import connectmeJoaoeLuis.Model.Block;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.File;
-import java.util.ArrayList;
+import java.net.URL;
 import java.util.List;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import org.apache.commons.io.FilenameUtils;
 /**
  *
  * @author smile
  */
 public class Tela extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Tela
-     */
     
     private final JFileChooser openFileChooser;
     private BufferedReader originalBI;
     private File fileJson;
     
-   
+    private JButton[][] matriz = new JButton[4][4];
     
-    private List<JButton> lista = new ArrayList<JButton>();
-    
-    
+    public void paintConnectors(Graphics g, List<Block> listBlock, JButton[][] matriz) {
+        Graphics2D g2D = (Graphics2D) g;
+        matriz[0][0].paintComponents(g);
+        URL urlImage = MyPrincipleController.class.getResource("../assets/images/cano.png");
+        Icon image = new ImageIcon(urlImage);
+        
+  
+
+        
+       
+    }
    
     
     public Tela() {
+                
         initComponents();
         button03.setIcon(new ImageIcon("../images.jpeg"));
-        lista.add(button01);
-        lista.add(button02);
-        lista.add(button03);
-        lista.add(button04);
-        lista.add(button05);
-        lista.add(button06);
-        lista.add(button07);
-        lista.add(button08);
-        lista.add(button09);
-        lista.add(button10);
-        lista.add(button11);
-        lista.add(button12);
-        lista.add(button13);
-        lista.add(button14);
-        lista.add(button15);
-        lista.add(button16);
+        matriz[0][0] = button01;
+        matriz[0][1] = button02;
+        matriz[0][2] = button03;
+        matriz[0][3] = button04;
+
+        matriz[1][0] = button05;
+        matriz[1][1] = button06;
+        matriz[1][2] = button07;
+        matriz[1][3] = button08;
+
+        matriz[2][0] = button09;
+        matriz[2][1] = button10;
+        matriz[2][2] = button11;
+        matriz[2][3] = button12;
+
+        matriz[3][0] = button13;
+        matriz[3][1] = button14;
+        matriz[3][2] = button15;
+        matriz[3][3] = button16;
         
         
         
@@ -65,8 +78,8 @@ public class Tela extends javax.swing.JFrame {
     }
     
     
-    public List<JButton> getListaBotoes() {
-        return lista;
+    public JButton[][] getmatrizBotoes() {
+        return matriz;
     }
     
     public void setFileJson(File url){
@@ -74,19 +87,8 @@ public class Tela extends javax.swing.JFrame {
     }
     
     public File getFileJson(){
-        if(fileJson != null){
-            List<JButton> list = getListaBotoes();
-            MyPrincipleController principleController = new MyPrincipleController(list);
-        principleController.readJson(fileJson);
-        }
         return fileJson;
-   }
-    
-    
-    
-    
-    
-    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -294,12 +296,26 @@ public class Tela extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_button13ActionPerformed
 
-    private void LevelListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LevelListActionPerformed
+    public void showView() {
+        setVisible(true);
+    }
+    
+    public void clearView() {
+        for (JButton[] jButtons : matriz) {
+            for (JButton jButton : jButtons) {
+                jButton.setIcon(null);
+            }
+        }
+    }
+    
+    
+    private void LevelmatrizctionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LevelmatrizctionPerformed
        int returnValue = openFileChooser.showOpenDialog(this);
+       
         
         if(returnValue == JFileChooser.APPROVE_OPTION){
-            
-            
+            clearView();
+
             
             
             try{
@@ -307,22 +323,34 @@ public class Tela extends javax.swing.JFrame {
                 //if(!ex.equals(".json")){
                   //  throw new Exception("arquivo nao encontrado");
                 //}
-               Message.setText(openFileChooser.getSelectedFile().getName());
+                
+                Message.setText(openFileChooser.getSelectedFile().getName());
                 this.fileJson = openFileChooser.getSelectedFile();
-            //fileJson.setFileJson(openFileChooser);
-            File filess = openFileChooser.getSelectedFile();
-            System.out.println(filess.getName());
-                //Message.setText("Arquivo encontrado");
-                System.out.println(openFileChooser.getSelectedFile());
+                
+                LevelController level = new LevelController(getmatrizBotoes());
+                
+                level.loadLevel(fileJson.getAbsolutePath());
+                
+                paintConnectors(getGraphics(), level.getBlockList(), level.getMatriz());
+                
+//            //fileJson.setFileJson(openFileChooser);
+//            File filess = openFileChooser.getSelectedFile();
+//            System.out.println(filess.getName());
+//                //Message.setText("Arquivo encontrado");
+//                System.out.println(openFileChooser.getSelectedFile());
             }catch(Exception ioe){
+                ioe.printStackTrace();
                 Message.setText("Arquivo invalido");
             }
+            
+            
         }
         //else{
   //          Message.setText("Arquivo nao encontrado ");
         //}
+
     
-    }//GEN-LAST:event_LevelListActionPerformed
+    }//GEN-LAST:event_LevelmatrizctionPerformed
 
     /**
      * @param args the command line arguments
