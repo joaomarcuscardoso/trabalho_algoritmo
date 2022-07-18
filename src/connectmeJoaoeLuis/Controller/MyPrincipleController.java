@@ -6,7 +6,6 @@ package connectmeJoaoeLuis.Controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import connectmeJoaoeLuis.Helper.PaintConnectors;
 import connectmeJoaoeLuis.Model.Block;
 import connectmeJoaoeLuis.View.Tela;
 import java.io.BufferedReader;
