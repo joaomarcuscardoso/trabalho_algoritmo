@@ -40,7 +40,6 @@ public class LevelController {
             URL urlImage = MyPrincipleController.class.getResource("../assets/images/"+blockList.get(i).getName()+".gif");
             System.out.println(urlImage);
             Icon image = new ImageIcon(urlImage);
-            
             matriz[position[1]][position[0]].setIcon(image);
             
 //            list.get(blockList.get(i).getPosition()).setIcon(image);
@@ -73,7 +72,6 @@ public class LevelController {
         
         
         // readJson   
-       
         try{
             System.out.println("path:"+ pathFile);
             

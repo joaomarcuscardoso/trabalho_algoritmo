@@ -7,6 +7,7 @@ package connectmeJoaoeLuis.View;
 import connectmeJoaoeLuis.Controller.LevelController;
 import connectmeJoaoeLuis.Controller.MyPrincipleController;
 import connectmeJoaoeLuis.Model.Block;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
@@ -17,6 +18,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
@@ -34,14 +37,10 @@ public class Tela extends javax.swing.JFrame {
     public void paintConnectors(Graphics g, List<Block> listBlock, JButton[][] matriz) {
         Graphics2D g2D = (Graphics2D) g;
         matriz[0][0].paintComponents(g);
-        URL urlImage = MyPrincipleController.class.getResource("../assets/images/cano.png");
-        Icon image = new ImageIcon(urlImage);
-        
-  
-
-        
-       
+        g2D.drawLine(10, 10, 10, 10);
+        //  public synchronized void paintIcon(Component c, Graphics g, int x, int y)
     }
+    
    
     
     public Tela() {
