@@ -38,19 +38,60 @@ public class Tela extends javax.swing.JFrame {
     private File fileJson;
     
     private JPanel[][] matriz = new JPanel[4][4];
+    int valueInit = 10;
+    int i = 0;
+    int valueX =0;
+    int valueY =0;
     
-    public void paintConnectors(Graphics g, JPanel[][] matriz) throws IOException {
+    public void paintConnectors(Graphics g, JPanel[][] matriz,  List<Block> blocks ) throws IOException {
         Graphics2D g2D = (Graphics2D) g;
-        BufferedImage img = ImageIO.read(Tela.class.getResource("../assets/images/vermelho.gif"));
+        
         BufferedImage cano = ImageIO.read(Tela.class.getResource("../assets/images/cano.png"));
 
-        g2D.drawImage(img, matriz[0][0].getX(), matriz[0][0].getY(), matriz[0][0]);
-        
-        g2D.drawImage(cano, matriz[0][0].getX() + 95, matriz[0][0].getY(), matriz[0][0]);
-        
-        g2D.drawImage(img, matriz[0][1].getX(), matriz[0][1].getY(), matriz[0][1]);
-        
-        g2D.drawImage(cano, matriz[0][1].getX() - 95, matriz[0][1].getY(), matriz[0][1]);
+        for (Block block : blocks) {
+            int x = block.getPosition()[0];
+            int y = block.getPosition()[1];
+
+            String imgString = block.getName();
+            
+            BufferedImage img = ImageIO.read(Tela.class.getResource("../assets/images/"+imgString+".gif"));
+
+            g2D.drawImage(img, matriz[x][y].getX(), matriz[block.getPosition()[x]][y].getY(), matriz[x][y]);
+            valueX =  matriz[x][y].getWidth() / 2;
+            valueY = matriz[x][y].getWidth() / 2; 
+            
+            
+            for (int connector : block.getConnectors()) {
+                for(int i = 0; i < connector;i++) {
+
+                    if( i == 0 || i == 1) {
+                        valueX = matriz[x][y].getX();
+                        valueY = matriz[x][y].getY();
+                        valueInit += 20;
+
+                    } else if ( i== 2 || i == 3) {
+                        valueX = matriz[x][y].getX();
+                        valueY = matriz[x][y].getY();
+                        valueInit -= 20;
+                    }
+                    
+                        
+                    g2D.drawImage(cano,  valueX,  valueY, matriz[x][y]);
+                    
+                    
+                
+                }
+            }
+            
+        }
+
+//        g2D.drawImage(img, matriz[0][0].getX(), matriz[0][0].getY(), matriz[0][0]);
+//        
+//        g2D.drawImage(cano, matriz[0][0].getX() + 95, matriz[0][0].getY(), matriz[0][0]);
+//        
+//        g2D.drawImage(img, matriz[0][1].getX(), matriz[0][1].getY(), matriz[0][1]);
+//        
+//        g2D.drawImage(cano, matriz[0][1].getX() - 95, matriz[0][1].getY(), matriz[0][1]);
     }
     
    
@@ -153,180 +194,243 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
+        button01.setMaximumSize(new java.awt.Dimension(120, 120));
+        button01.setMinimumSize(new java.awt.Dimension(120, 120));
+        button01.setPreferredSize(new java.awt.Dimension(120, 120));
+
         javax.swing.GroupLayout button01Layout = new javax.swing.GroupLayout(button01);
         button01.setLayout(button01Layout);
         button01Layout.setHorizontalGroup(
             button01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button01Layout.setVerticalGroup(
             button01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button02.setMaximumSize(new java.awt.Dimension(120, 120));
+        button02.setMinimumSize(new java.awt.Dimension(120, 120));
+        button02.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button02Layout = new javax.swing.GroupLayout(button02);
         button02.setLayout(button02Layout);
         button02Layout.setHorizontalGroup(
             button02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button02Layout.setVerticalGroup(
             button02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        button03.setMaximumSize(new java.awt.Dimension(120, 120));
+        button03.setMinimumSize(new java.awt.Dimension(120, 120));
+
         javax.swing.GroupLayout button03Layout = new javax.swing.GroupLayout(button03);
         button03.setLayout(button03Layout);
         button03Layout.setHorizontalGroup(
             button03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button03Layout.setVerticalGroup(
             button03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        button04.setMaximumSize(new java.awt.Dimension(120, 120));
+        button04.setMinimumSize(new java.awt.Dimension(120, 120));
+        button04.setPreferredSize(new java.awt.Dimension(120, 120));
+
         javax.swing.GroupLayout button04Layout = new javax.swing.GroupLayout(button04);
         button04.setLayout(button04Layout);
         button04Layout.setHorizontalGroup(
             button04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 94, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button04Layout.setVerticalGroup(
             button04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        button05.setMaximumSize(new java.awt.Dimension(120, 120));
+        button05.setMinimumSize(new java.awt.Dimension(120, 120));
+        button05.setPreferredSize(new java.awt.Dimension(120, 120));
+
         javax.swing.GroupLayout button05Layout = new javax.swing.GroupLayout(button05);
         button05.setLayout(button05Layout);
         button05Layout.setHorizontalGroup(
             button05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button05Layout.setVerticalGroup(
             button05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button06.setMaximumSize(new java.awt.Dimension(120, 120));
+        button06.setMinimumSize(new java.awt.Dimension(120, 120));
+        button06.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button06Layout = new javax.swing.GroupLayout(button06);
         button06.setLayout(button06Layout);
         button06Layout.setHorizontalGroup(
             button06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button06Layout.setVerticalGroup(
             button06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button07.setMaximumSize(new java.awt.Dimension(120, 120));
+        button07.setMinimumSize(new java.awt.Dimension(120, 120));
+        button07.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button07Layout = new javax.swing.GroupLayout(button07);
         button07.setLayout(button07Layout);
         button07Layout.setHorizontalGroup(
             button07Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button07Layout.setVerticalGroup(
             button07Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button08.setMaximumSize(new java.awt.Dimension(120, 120));
+        button08.setMinimumSize(new java.awt.Dimension(120, 120));
+        button08.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button08Layout = new javax.swing.GroupLayout(button08);
         button08.setLayout(button08Layout);
         button08Layout.setHorizontalGroup(
             button08Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button08Layout.setVerticalGroup(
             button08Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button09.setMaximumSize(new java.awt.Dimension(120, 120));
+        button09.setMinimumSize(new java.awt.Dimension(120, 120));
+        button09.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button09Layout = new javax.swing.GroupLayout(button09);
         button09.setLayout(button09Layout);
         button09Layout.setHorizontalGroup(
             button09Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button09Layout.setVerticalGroup(
             button09Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button10.setMaximumSize(new java.awt.Dimension(120, 120));
+        button10.setMinimumSize(new java.awt.Dimension(120, 120));
+        button10.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button10Layout = new javax.swing.GroupLayout(button10);
         button10.setLayout(button10Layout);
         button10Layout.setHorizontalGroup(
             button10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button10Layout.setVerticalGroup(
             button10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button11.setMaximumSize(new java.awt.Dimension(120, 120));
+        button11.setMinimumSize(new java.awt.Dimension(120, 120));
+        button11.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button11Layout = new javax.swing.GroupLayout(button11);
         button11.setLayout(button11Layout);
         button11Layout.setHorizontalGroup(
             button11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button11Layout.setVerticalGroup(
             button11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button12.setMaximumSize(new java.awt.Dimension(120, 120));
+        button12.setMinimumSize(new java.awt.Dimension(120, 120));
+        button12.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button12Layout = new javax.swing.GroupLayout(button12);
         button12.setLayout(button12Layout);
         button12Layout.setHorizontalGroup(
             button12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button12Layout.setVerticalGroup(
             button12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button13.setMaximumSize(new java.awt.Dimension(120, 120));
+        button13.setMinimumSize(new java.awt.Dimension(120, 120));
+        button13.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button13Layout = new javax.swing.GroupLayout(button13);
         button13.setLayout(button13Layout);
         button13Layout.setHorizontalGroup(
             button13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button13Layout.setVerticalGroup(
             button13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button14.setMaximumSize(new java.awt.Dimension(120, 120));
+        button14.setMinimumSize(new java.awt.Dimension(120, 120));
+        button14.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button14Layout = new javax.swing.GroupLayout(button14);
         button14.setLayout(button14Layout);
         button14Layout.setHorizontalGroup(
             button14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button14Layout.setVerticalGroup(
             button14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button15.setMaximumSize(new java.awt.Dimension(120, 120));
+        button15.setMinimumSize(new java.awt.Dimension(120, 120));
+        button15.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button15Layout = new javax.swing.GroupLayout(button15);
         button15.setLayout(button15Layout);
         button15Layout.setHorizontalGroup(
             button15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button15Layout.setVerticalGroup(
             button15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
+
+        button16.setMaximumSize(new java.awt.Dimension(120, 120));
+        button16.setMinimumSize(new java.awt.Dimension(120, 120));
+        button16.setPreferredSize(new java.awt.Dimension(120, 120));
 
         javax.swing.GroupLayout button16Layout = new javax.swing.GroupLayout(button16);
         button16.setLayout(button16Layout);
         button16Layout.setHorizontalGroup(
             button16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         button16Layout.setVerticalGroup(
             button16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -372,7 +476,7 @@ public class Tela extends javax.swing.JFrame {
                                 .addComponent(button12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(button16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(button04, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +485,7 @@ public class Tela extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Message, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Level, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(button04, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(button03, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -468,6 +572,8 @@ public class Tela extends javax.swing.JFrame {
                 LevelController level = new LevelController(getmatrizBotoes());
                 
                 level.loadLevel(fileJson.getAbsolutePath());
+                List<Block> blocks = level.getBlockList();
+                paintConnectors(getGraphics(), matriz, blocks);
                 
 //                paintConnectors(getGraphics(), level.getMatriz());
                 
@@ -490,12 +596,7 @@ public class Tela extends javax.swing.JFrame {
     }//GEN-LAST:event_LevelActionPerformed
 
     private void ButtonLarguraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLarguraActionPerformed
-        try {
-            // TODO add your handling code here:
-            paintConnectors(getGraphics(), matriz);
-        } catch (IOException ex) {
-            Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+
     }//GEN-LAST:event_ButtonLarguraActionPerformed
 
     /**

@@ -32,15 +32,15 @@ public class LevelController {
     public void loadLevel(String pathFile) {
         this.blockList = readJson(pathFile);
         
-        for (int i = 0; i < blockList.size(); i++) {
-            System.out.println(blockList.get(i));
-            int[] position = blockList.get(i).getPosition(); 
-            
-            // set Images
-
-            URL urlImage = MyPrincipleController.class.getResource("../assets/images/"+blockList.get(i).getName()+".gif");
-            System.out.println(urlImage);
-            Icon image = new ImageIcon(urlImage);
+//        for (int i = 0; i < blockList.size(); i++) {
+//            System.out.println(blockList.get(i));
+//            int[] position = blockList.get(i).getPosition(); 
+//            
+//            // set Images
+//
+//            URL urlImage = MyPrincipleController.class.getResource("../assets/images/"+blockList.get(i).getName()+".gif");
+//            System.out.println(urlImage);
+//            Icon image = new ImageIcon(urlImage);
             //matriz[position[1]][position[0]].setIcon(image);
             
 //            list.get(blockList.get(i).getPosition()).setIcon(image);
@@ -48,7 +48,7 @@ public class LevelController {
             
            //PaintConnectors paint = new PaintConnectors(matriz[position[1]][position[0]]);
             
-        }
+//        }
         
 //        for(Block block : blockList) {
 //            
