@@ -6,7 +6,7 @@
     "done": [0,0,0,0]
   },
   {
-    "name": "azul",
+    "name": "azul", 
     "connectors": [0, 2, 3, 0],
     "position": [1,2],
     "done": [0,1,0,0]

@@ -15,16 +15,17 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
  * @author smile
  */
 public class LevelController {
-     private JButton[][] matriz;
+     private JPanel[][] matriz;
      private List<Block> blockList;
      
-     public LevelController(JButton[][] matriz) {
+     public LevelController(JPanel[][] matriz) {
          this.matriz = matriz;
      }
     
@@ -40,7 +41,7 @@ public class LevelController {
             URL urlImage = MyPrincipleController.class.getResource("../assets/images/"+blockList.get(i).getName()+".gif");
             System.out.println(urlImage);
             Icon image = new ImageIcon(urlImage);
-            matriz[position[1]][position[0]].setIcon(image);
+            //matriz[position[1]][position[0]].setIcon(image);
             
 //            list.get(blockList.get(i).getPosition()).setIcon(image);
             
@@ -63,7 +64,7 @@ public class LevelController {
         return this.blockList;
     }
 
-    public JButton[][] getMatriz() {
+    public JPanel[][] getMatriz() {
         return matriz;
     }
     
