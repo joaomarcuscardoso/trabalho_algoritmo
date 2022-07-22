@@ -51,37 +51,34 @@ public class Tela extends javax.swing.JFrame {
         for (Block block : blocks) {
             int x = block.getPosition()[0];
             int y = block.getPosition()[1];
-
+            
+            System.out.println("x: "+x);
+            System.out.println("y: "+y);
             String imgString = block.getName();
             
             BufferedImage img = ImageIO.read(Tela.class.getResource("../assets/images/"+imgString+".gif"));
 
-            g2D.drawImage(img, matriz[x][y].getX(), matriz[block.getPosition()[x]][y].getY(), matriz[x][y]);
-            valueX =  matriz[x][y].getWidth() / 2;
-            valueY = matriz[x][y].getWidth() / 2; 
+            g2D.drawImage(img, matriz[x][y].getX(), matriz[x][y].getY(), 120, 120, matriz[x][y]);
+            valueX = (int) ( matriz[x][y].getX()) + 60;
+            valueY =(int) ( matriz[x][y].getY()) - 60; 
             
             
-            for (int connector : block.getConnectors()) {
-                for(int i = 0; i < connector;i++) {
-
-                    if( i == 0 || i == 1) {
-                        valueX = matriz[x][y].getX();
-                        valueY = matriz[x][y].getY();
-                        valueInit += 20;
-
-                    } else if ( i== 2 || i == 3) {
-                        valueX = matriz[x][y].getX();
-                        valueY = matriz[x][y].getY();
-                        valueInit -= 20;
-                    }
-                    
-                        
-                    g2D.drawImage(cano,  valueX,  valueY, matriz[x][y]);
-                    
-                    
+            while (block.getConnectors()[i] == 0) {
+                i++;
+            }    
                 
-                }
+            for(int j=0; j < block.getConnectors()[i]; j++) {
+                 
+                valueY += 30;
+
+                System.out.println("block: "+block.getName());
+           
+                g2D.drawImage(cano, valueX, valueY, matriz[x][y].getWidth() - 30, matriz[x][y].getHeight() - 30,matriz[x][y]);
+                
+                
             }
+            
+            i = 0;
             
         }
 

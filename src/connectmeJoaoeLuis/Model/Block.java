@@ -16,6 +16,44 @@ public class Block {
     private int[] connectors = new int[4];  
     private int[] position = new int[2];
     private int[] done = new int [4];
+    private int up;
+    private int down;
+    private int left;
+    private int right;
+
+    public int getUp() {
+        return up;
+    }
+
+    public void setUp(int up) {
+        this.up = up;
+    }
+
+    public int getDown() {
+        return down;
+    }
+
+    public void setDown(int down) {
+        this.down = down;
+    }
+
+    public int getLeft() {
+        return left;
+    }
+
+    public void setLeft(int left) {
+        this.left = left;
+    }
+
+    public int getRight() {
+        return right;
+    }
+
+    public void setRight(int right) {
+        this.right = right;
+    }
+    
+    
 
     public String getName() {
         return name;

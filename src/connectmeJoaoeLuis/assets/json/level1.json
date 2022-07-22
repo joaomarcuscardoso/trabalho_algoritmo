@@ -2,12 +2,16 @@
   {
     "name":"vermelho",
     "connectors":[0, 2, 0, 0],
+    "up": 2,
+    "left": 0,
     "position":[1,0],
     "done":[0,0,0,0]
   },
   {
     "name":"verde",
     "connectors":[0, 0, 0, 2],
+    "up": 0,
+    "left": 2,
     "position":[0,3],
     "done":[0,0,0,0]
   }
