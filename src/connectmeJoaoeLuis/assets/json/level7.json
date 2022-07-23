@@ -8,7 +8,7 @@
   {
     "name": "vermelho",
     "connectors": [0, 0, 0, 3],
-    "position": [2,1],
+    "position": [1,2],
     "done": [0,0,0,0]
   }
 ]

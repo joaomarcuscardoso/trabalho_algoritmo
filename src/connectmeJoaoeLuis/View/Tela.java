@@ -26,78 +26,93 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author smile
  */
 public class Tela extends javax.swing.JFrame {
 
-    
     private final JFileChooser openFileChooser;
     private BufferedReader originalBI;
     private File fileJson;
-    
+
     private JPanel[][] matriz = new JPanel[4][4];
-    int valueInit = 10;
     int i = 0;
-    int valueX =0;
-    int valueY =0;
-    
-    public void paintConnectors(Graphics g, JPanel[][] matriz,  List<Block> blocks ) throws IOException {
+    int valueX = 0;
+    int valueY = 0;
+
+    public void paintConnectors(Graphics g, JPanel[][] matriz, List<Block> blocks) throws IOException {
         Graphics2D g2D = (Graphics2D) g;
         
         BufferedImage cano = ImageIO.read(Tela.class.getResource("../assets/images/cano.png"));
-
+        BufferedImage cano90 = ImageIO.read(Tela.class.getResource("../assets/images/cano90.png"));
+        
         for (Block block : blocks) {
             int x = block.getPosition()[0];
             int y = block.getPosition()[1];
-            
-            System.out.println("x: "+x);
-            System.out.println("y: "+y);
+
             String imgString = block.getName();
-            
-            BufferedImage img = ImageIO.read(Tela.class.getResource("../assets/images/"+imgString+".gif"));
+
+            BufferedImage img = ImageIO.read(Tela.class.getResource("../assets/images/" + imgString + ".gif"));
 
             g2D.drawImage(img, matriz[x][y].getX(), matriz[x][y].getY(), 120, 120, matriz[x][y]);
-            valueX = (int) ( matriz[x][y].getX()) + 60;
-            valueY =(int) ( matriz[x][y].getY()) - 60; 
-            
-            
-            while (block.getConnectors()[i] == 0) {
-                i++;
-            }    
-                
-            for(int j=0; j < block.getConnectors()[i]; j++) {
-                 
-                valueY += 30;
-
-                System.out.println("block: "+block.getName());
-           
-                g2D.drawImage(cano, valueX, valueY, matriz[x][y].getWidth() - 30, matriz[x][y].getHeight() - 30,matriz[x][y]);
-                
-                
-            }
             
             i = 0;
-            
-        }
+            for (int number : block.getConnectors()) {
+                if(i == 0) {
+                    System.out.println("cima");
+                    valueX = matriz[x][y].getX() + 40;
+                    valueY = matriz[x][y].getY() - 60;
 
-//        g2D.drawImage(img, matriz[0][0].getX(), matriz[0][0].getY(), matriz[0][0]);
-//        
-//        g2D.drawImage(cano, matriz[0][0].getX() + 95, matriz[0][0].getY(), matriz[0][0]);
-//        
-//        g2D.drawImage(img, matriz[0][1].getX(), matriz[0][1].getY(), matriz[0][1]);
-//        
-//        g2D.drawImage(cano, matriz[0][1].getX() - 95, matriz[0][1].getY(), matriz[0][1]);
-    }
-    
-   
-    
-    public Tela() {
+                } else if(i == 1) {
+                    System.out.println("direita");
+                    valueX = matriz[x][y].getX() + 60;
+                    valueY = matriz[x][y].getY();
+                } else if(i ==2 ) {
+                    System.out.println("baixo");
+                    valueX = matriz[x][y].getX() + 40;
+                    valueY = matriz[x][y].getY() + 60;
+                } else {
+                    System.out.println("esquerda");
+                    valueX = matriz[x][y].getX() - 60;
+                    valueY = matriz[x][y].getY();
+                }
                 
+                while(number > 0) {
+
+                    if(i == 1 || i == 3) {
+                        valueY += 15;
+                        g2D.drawImage(cano, valueX, valueY, matriz[x][y].getWidth() - 30, matriz[x][y].getHeight() - 30, matriz[x][y]);
+
+
+                    } else {
+                        valueX -= 15;
+                        
+                        g2D.drawImage(cano90, +valueX, valueY, matriz[x][y].getWidth() - 30, matriz[x][y].getHeight() - 30, matriz[x][y]);
+
+                    }
+
+                    
+
+
+                    System.out.println("x: " + matriz[x][y].getX());
+                    System.out.println("y: " + matriz[x][y].getY());
+                    System.out.println("valueY: " + valueY);
+                    System.out.println("valueX: " + valueY);
+
+                    number--;
+                }
+                
+                i++;
+            }           
+        }
+    }
+
+    public Tela() {
+
         initComponents();
-        //button03.setIcon(new ImageIcon("../images.jpeg"));
-        
+
         matriz[0][0] = button01;
         matriz[0][1] = button02;
         matriz[0][2] = button03;
@@ -105,7 +120,7 @@ public class Tela extends javax.swing.JFrame {
 
         matriz[1][0] = button05;
         matriz[1][1] = button06;
-        matriz[1][2] = button14;
+        matriz[1][2] = button07;
         matriz[1][3] = button08;
 
         matriz[2][0] = button09;
@@ -117,26 +132,22 @@ public class Tela extends javax.swing.JFrame {
         matriz[3][1] = button14;
         matriz[3][2] = button15;
         matriz[3][3] = button16;
-        
-        
-        
+
         openFileChooser = new JFileChooser();
         openFileChooser.setCurrentDirectory(new File("src/connectmeJoaoeLuis/assets/json/"));
         openFileChooser.setFileFilter(new FileNameExtensionFilter("json Files", "json"));
-        
-    
+
     }
-    
-    
+
     public JPanel[][] getmatrizBotoes() {
         return matriz;
     }
-    
-    public void setFileJson(File url){
+
+    public void setFileJson(File url) {
         this.fileJson = url;
     }
-    
-    public File getFileJson(){
+
+    public File getFileJson() {
         return fileJson;
     }
 
@@ -170,6 +181,7 @@ public class Tela extends javax.swing.JFrame {
         button14 = new javax.swing.JPanel();
         button15 = new javax.swing.JPanel();
         button16 = new javax.swing.JPanel();
+        buttonClear = new javax.swing.JButton();
 
         button1.setLabel("button1");
 
@@ -430,6 +442,13 @@ public class Tela extends javax.swing.JFrame {
             .addGap(0, 120, Short.MAX_VALUE)
         );
 
+        buttonClear.setText("Limpar Campos");
+        buttonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -437,6 +456,8 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(ButtonLargura, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(buttonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ButtonProfundidade, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
@@ -520,7 +541,9 @@ public class Tela extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ButtonProfundidade, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonLargura, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ButtonLargura, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
         );
 
@@ -530,71 +553,58 @@ public class Tela extends javax.swing.JFrame {
     public void showView() {
         setVisible(true);
     }
-    
-    public void clearView() {
-        for (JPanel[] jButtons : matriz) {
-            for (JPanel jButton : jButtons) {
-                //jButton.setIcon(null);
-            }
-        }
-    }
-    
-    
+
+
     private void LevelmatrizctionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LevelmatrizctionPerformed
 
 
-    
     }//GEN-LAST:event_LevelmatrizctionPerformed
 
     private void LevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LevelActionPerformed
-        // TODO add your handling code here:
-                // TODO add your handling code here:
-        int returnValue = openFileChooser.showOpenDialog(this);
-       
-        System.out.println("button");
-        if(returnValue == JFileChooser.APPROVE_OPTION){
-            clearView();
+ 
+        int returnValue = openFileChooser.showOpenDialog(this);   
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
 
             
-            
-            try{
-                //String ex = FilenameUtils.getExtention(openFileChooser.getSelectedFile().getName());
-                //if(!ex.equals(".json")){
-                  //  throw new Exception("arquivo nao encontrado");
-                //}
-                
+            try {
+
                 Message.setText(openFileChooser.getSelectedFile().getName());
                 this.fileJson = openFileChooser.getSelectedFile();
-                
+
                 LevelController level = new LevelController(getmatrizBotoes());
-                
+
                 level.loadLevel(fileJson.getAbsolutePath());
                 List<Block> blocks = level.getBlockList();
                 paintConnectors(getGraphics(), matriz, blocks);
-                
+
 //                paintConnectors(getGraphics(), level.getMatriz());
-                
 //            //fileJson.setFileJson(openFileChooser);
 //            File filess = openFileChooser.getSelectedFile();
 //            System.out.println(filess.getName());
 //                //Message.setText("Arquivo encontrado");
 //                System.out.println(openFileChooser.getSelectedFile());
-            }catch(Exception ioe){
+            } catch (Exception ioe) {
                 ioe.printStackTrace();
                 Message.setText("Arquivo invalido");
             }
-            
-            
+
         }
         //else{
-  //          Message.setText("Arquivo nao encontrado ");
+        //          Message.setText("Arquivo nao encontrado ");
         //}
-        
+
     }//GEN-LAST:event_LevelActionPerformed
 
     private void ButtonLarguraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLarguraActionPerformed
 
     }//GEN-LAST:event_ButtonLarguraActionPerformed
+
+    private void buttonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClearActionPerformed
+        // TODO add your handling code here:
+        
+         
+    }//GEN-LAST:event_buttonClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -653,5 +663,6 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JPanel button14;
     private javax.swing.JPanel button15;
     private javax.swing.JPanel button16;
+    private javax.swing.JButton buttonClear;
     // End of variables declaration//GEN-END:variables
 }
